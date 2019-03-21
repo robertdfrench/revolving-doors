@@ -4,10 +4,13 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <stdlib.h>
+#include <time.h>
 
 #include "common.h"
 
 int main(int argc, char** argv) {
+	time_t t[2];
+
 	char* path = "server.door";
         int door = open(path, O_RDONLY);
         if (door == -1) {
@@ -23,6 +26,7 @@ int main(int argc, char** argv) {
         args.rbuf = args.data_ptr;
         args.rsize = args.rsize;
 
+	t[0] = time(NULL);
 	for(int i = 0; i < iterations; i++) {
 		int result = door_call(door, &args);
 		if (result == -1) {
@@ -30,5 +34,9 @@ int main(int argc, char** argv) {
 			exit(1);
 		}
 	}
+	t[1] = time(NULL);
+
+	printf("Message size: %dKB\n", (nelem * elsize)/1024);
+	printf("Throughput: %f doors/sec\n", ((float) iterations)/(t[1] - t[0]));
         return 0;
 }
