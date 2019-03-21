@@ -6,6 +6,10 @@ invoke a simple server handle one million times. The server function simply
 writes `"hello world\0"` into the client buffer, so this is not an intricate
 call by any means.
 
+### Message Size
+Seems to be that you can't fit more than 1.975MB through a door at once. If you
+try to send more than that, you get `Arg list too long`.
+
 ### Sources
 I am writing this because there seems to be so little about doors on the 
 internet.
