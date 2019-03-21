@@ -24,7 +24,7 @@ int main(int argc, char** argv) {
         args.rbuf = reply;
         args.rsize = 12;
 
-	for(int i = 0; i < 1000000; i++) {
+	for(int i = 0; i < 100000; i++) {
 		int result = door_call(door, &args);
 		if (result == -1) {
 			perror("Could not call door");
