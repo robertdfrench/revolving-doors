@@ -18,3 +18,4 @@ internet.
 * [Door API Details](https://blogs.oracle.com/tucker/door-api-details)
 * [DOOR_CREATE(3C)](https://illumos.org/man/3C/door_create)
 * Chapter 15 "Doors" of *UNIX Network Programming, Volume 2, Second Edition: Interprocess Communications*, Prentice Hall, 1999, ISBN 0-13-081081-9.
+* [illumos-fuse2](https://bitbucket.org/gwr/illumos-fuse2)
