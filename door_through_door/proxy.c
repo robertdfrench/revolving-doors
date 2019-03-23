@@ -5,19 +5,28 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <sys/stat.h>
-#include <string.h>
 
 #include "common.h"
 
 void handle(void* cookie, char* args, size_t nargs, door_desc_t* descriptors, uint_t ndescriptors) {
-	char* secret = "s3cr3t_!nf0";
-	door_return(secret, strlen(secret), NULL, 0);
+	char* path = "server.door";
+        int door = open(path, O_RDONLY);
+        if (door == -1) {
+                perror("Could not open door");
+                exit(1);
+        }
+
+        door_desc_t w_descriptor;
+        w_descriptor.d_attributes = DOOR_DESCRIPTOR;
+        w_descriptor.d_data.d_desc.d_descriptor = door;
+
+	door_return(NULL, 0, &w_descriptor, 1);
 }
 
 int main() {
         struct stat buf;
 
-	char* path = "server.door";
+	char* path = "proxy.door";
 
         int door = door_create(&handle, NULL, 0);
         if (door == -1) {
@@ -38,7 +47,7 @@ int main() {
 
         int attachment = fattach(door, path);
         if (attachment == -1) {
-                perror("Could not attach door to server.door");
+                perror("Could not attach door to proxy.door");
                 exit(1);
         }
 

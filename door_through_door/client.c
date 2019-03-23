@@ -11,32 +11,36 @@
 int main(int argc, char** argv) {
 	time_t t[2];
 
-	char* path = "server.door";
-        int door = open(path, O_RDONLY);
-        if (door == -1) {
+	char* path = "proxy.door";
+        int proxy = open(path, O_RDONLY);
+        if (proxy == -1) {
                 perror("Could not open door");
                 exit(1);
         }
 
         door_arg_t args;
-        args.data_ptr = calloc(nelem, elsize);
-        args.data_size = nelem * elsize;
+        args.data_ptr = NULL;
+        args.data_size = 0;
         args.desc_ptr = NULL;
         args.desc_num = 0;
-        args.rbuf = args.data_ptr;
-        args.rsize = args.rsize;
+        args.rbuf = NULL;
+        args.rsize = 0;
 
-	t[0] = time(NULL);
-	for(int i = 0; i < iterations; i++) {
-		int result = door_call(door, &args);
-		if (result == -1) {
-			perror("Could not call door");
-			exit(1);
-		}
+	int result = door_call(proxy, &args);
+	if (result == -1) {
+		perror("Could not call door");
+		exit(1);
 	}
-	t[1] = time(NULL);
 
-	printf("Message size: %dKB\n", (nelem * elsize)/1024);
-	printf("Throughput: %f doors/sec\n", ((float) iterations)/(t[1] - t[0]));
+	door_desc_t* w_descriptor = args.desc_ptr;
+	int server = w_descriptor->d_data.d_desc.d_descriptor;
+
+	result = door_call(server, &args);
+	if (result == -1) {
+		perror("Could not call door");
+		exit(1);
+	}
+
+	printf("data: %.*s", args.data_size, args.data_ptr);
         return 0;
 }
