@@ -6,7 +6,7 @@ test: client proxy.door ## Exchange a door through a proxy
 	kill `cat proxy.pid`
 
 proxy.door: proxy.pid
-	sleep 1
+	while [ ! -e $@ ]; do sleep 1; done
 
 proxy.pid: proxy server.door
 	./proxy &; echo $$! > $@
@@ -15,7 +15,7 @@ proxy: proxy.c
 	cc proxy.c -o $@
 
 server.door: server.pid
-	sleep 1
+	while [ ! -e $@ ]; do sleep 1; done
 
 server.pid: server
 	./server &; echo $$! > $@

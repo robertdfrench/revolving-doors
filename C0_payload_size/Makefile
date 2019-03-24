@@ -8,7 +8,7 @@ server.pid: server
 	./server &; echo $$! > $@
 
 server.door: server.pid
-	sleep 1
+	while [ ! -e $@ ]; do sleep 1; done
 
 server: server.c
 	cc server.c -o $@
