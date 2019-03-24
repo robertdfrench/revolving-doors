@@ -10,6 +10,16 @@ complexity, each of which discusses a different aspect of the doors API. Though
 unusual, this API is not very big. The goal of this project is to help folks
 become comfortable with the doors API in a single sitting.
 
+### Prerequisites
+You should know a little C, and have an interest in systems programming. More
+specifically, this tutorial assumes you either understand or can teach yourself
+about the following:
+
+* When a process opens a file, it gets back a "file descriptor" which is an int
+* Making a "System Call" is really just asking the OS to do something for you
+* C represents arrays by a pointer to the beginning of some data, and its length
+* `printf` takes some funky arguments, and you have to look those up sometimes.
+
 ### Sources
 I am writing this because there seems to be so little about doors on the 
 internet. Here is what I have been able to gather, in order of usefulness:
