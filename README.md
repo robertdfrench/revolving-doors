@@ -8,7 +8,7 @@ spawning a handler thread in the server process if needed.
 This repository includes a set of annotated code examples of increasing
 complexity, each of which discusses a different aspect of the doors API. Though
 unusual, this API is not very big. The goal of this project is to help folks
-become comfortable with the doors API in a single sitting.
+become comfortable with the doors API in two or three attempts.
 
 ### Prerequisites
 You should know a little C, and have an interest in systems programming. More
@@ -19,6 +19,16 @@ about the following:
 * Making a "System Call" is really just asking the OS to do something for you
 * C represents arrays by a pointer to the beginning of some data, and its length
 * `printf` takes some funky arguments, and you have to look those up sometimes.
+
+##### Illumos
+Of course, to play with doors, you will need access to Illumos! I recommend
+these two routes, depending on your preferences:
+
+* Want a local install? Download [openindiana](https://www.openindiana.org).
+* Just want to spin up a cloud instance? Try [Joyent](https://www.joyent.com).
+
+Doors are super lightweight, so feel free to be as cheap as you want. You will
+not need significant resources for this tutorial.
 
 ### Sources
 I am writing this because there seems to be so little about doors on the 
