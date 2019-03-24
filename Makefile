@@ -3,6 +3,10 @@ include lib.mk
 test: $(subst /,,*/) ## Run all tests
 	$(info done!)
 
+knock_knock: host_check ## Open a door and call a function inside
+	$(call announce,$@)
+	$(MAKE) -C $@ test
+
 hello_world: host_check ## Open a door an receive a greeting
 	$(call announce,$@)
 	$(MAKE) -C $@ test
