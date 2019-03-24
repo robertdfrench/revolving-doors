@@ -1,10 +1,6 @@
-.PHONY: help
+include ../lib.mk
 
-help:
-	@# Help Menu due to https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
-
-test: client proxy.door
+test: client proxy.door ## Exchange a door through a proxy
 	./client
 	kill `cat server.pid`
 	kill `cat proxy.pid`
