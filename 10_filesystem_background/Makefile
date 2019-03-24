@@ -1,15 +1,15 @@
 include ../lib.mk
 
-test: clean server.door ## Create a place for the door to exist
+test: server.door
+	$(call emphasize, server.door exists as a normal file)
 	ls -AhlF server.door
+	$(call emphasize, We can rerun server. It is idempotent)
 	./server
 	ls -AhlF server.door
 
 server.door: server
+	$(call emphasize, Launch door server to create $@)
 	./server
 
 server: server.c
 	cc server.c -o $@
-
-clean:
-	rm -f server server.door

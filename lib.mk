@@ -6,7 +6,8 @@ help:
 		| sort \
 		| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-announce=@printf "\033[31m\#\# $(1)\033[0m\n"
+announce=@printf "\n\033[31m\#\# $(1)\033[0m\n"
+emphasize=@printf "\033[36m($(1) )\033[0m\n"
 
 host_check: illumos cc;
 

@@ -1,14 +1,18 @@
 include ../lib.mk
 
-test: client proxy.door ## Exchange a door through a proxy
+test: client proxy.door
+	$(call emphasize, Exchange a door through the proxy)
 	./client
+	$(call emphasize, Cleanup both server and proxy processes)
 	kill `cat server.pid`
 	kill `cat proxy.pid`
 
 proxy.door: proxy.pid
+	$(call emphasize, Wait for the proxy door to become available)
 	while [ ! -e $@ ]; do sleep 1; done
 
 proxy.pid: proxy server.door
+	$(call emphasize, Background the proxy server)
 	./proxy &; echo $$! > $@
 
 proxy: proxy.c

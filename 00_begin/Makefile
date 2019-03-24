@@ -1,2 +1,9 @@
-test:
-	$(info You are ready to begin learning about doors!)
+include ../lib.mk
+
+test: server
+	$(call emphasize, Execute the demo program)
+	./server
+
+server: server.c
+	$(call emphasize, Compile the demo program)
+	cc $< -o $@

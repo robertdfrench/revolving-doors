@@ -1,6 +1,7 @@
 include ../lib.mk
 
 test: client server.door ## Send a greeting to the server
+	$(call emphasize, Exchange pleasantries with the server)
 	./client
 	kill `cat server.pid`
 
