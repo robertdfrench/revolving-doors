@@ -5,7 +5,7 @@ test: server.door ## Send a greeting to the server
 	kill `cat server.pid`
 
 server.door: server.pid
-	sleep 1
+	while [ ! -e $@ ]; do sleep 1; done
 
 server.pid: server
 	./server &; echo $$! > $@
