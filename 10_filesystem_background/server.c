@@ -14,8 +14,9 @@ int main() {
         if (stat(path, &buf) < 0) {
                 int newfd;
 
-		// No such file exists, so lets create it
-                if ((newfd = creat(path, 0444)) < 0) {
+		// No such file exists, so lets create it with 400 permissions
+		// so that only we can access it
+                if ((newfd = creat(path, 0400)) < 0) {
                         perror("Could not create a new file for the door");
                         exit(1);
                 }

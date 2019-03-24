@@ -1,6 +1,6 @@
 include ../lib.mk
 
-test: client server.door ## Calculate walltime for 100k door_call()s
+test: client server.door ## Calculate walltime for 1k door_call()s
 	./client
 	kill `cat server.pid`
 

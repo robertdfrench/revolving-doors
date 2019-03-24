@@ -1,10 +1,15 @@
 include ../lib.mk
 
-test: server.door ## Create a place for the door to exist
+test: clean server.door ## Create a place for the door to exist
+	ls -AhlF server.door
+	./server
 	ls -AhlF server.door
 
 server.door: server
-	./server &; echo $$! > $@
+	./server
 
 server: server.c
 	cc server.c -o $@
+
+clean:
+	rm -f server server.door
