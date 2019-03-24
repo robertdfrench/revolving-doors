@@ -41,6 +41,6 @@ int main(int argc, char** argv) {
 		exit(1);
 	}
 
-	printf("data: %.*s", args.data_size, args.data_ptr);
+	printf("data: %.*s\n", args.data_size, args.data_ptr);
         return 0;
 }
