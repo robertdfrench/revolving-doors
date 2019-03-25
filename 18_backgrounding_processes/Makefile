@@ -1,6 +1,6 @@
 include ../lib.mk
 
-test: server.door ## Attach a door to the filesystem
+test: server.door
 	$(call emphasize, Kill the server by dereferencing its pid)
 	kill `cat server.pid`
 
