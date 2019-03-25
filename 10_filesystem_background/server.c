@@ -1,7 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
+// New headers for this lesson
 #include <unistd.h>
 #include <stropts.h>
-#include <stdlib.h>
 #include <fcntl.h>
 #include <sys/stat.h>
 
