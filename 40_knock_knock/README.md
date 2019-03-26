@@ -1,9 +1,9 @@
 # Knock Knock
 *Open a door and call a function in another process*
 
-In this lesson, we introduce a client program defined in `client.c`. Its job is
-to open `server.door` and call the `answer` function inside a running `server`
-process.
+In this lesson, we introduce a client program defined in [client.c](client.c).
+Its job is to open `server.door` and call the `answer` function inside a running
+`server` process.
 
 Opening a door is not (on the whole) different from opening other filesystem
 resources in UNIX. Perhaps you are more accustomed to using `fopen` to deal with
