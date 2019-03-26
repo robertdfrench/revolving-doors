@@ -24,6 +24,5 @@ error messages will help you understand what system calls are failing, and the
 associated man pages can help you figure out why.
 
 ### Some words of encouragement
-Doors are weird, but not really that hard. If you get confused or frustrated,
-take a break and come back to it. They've been around since the early nineties,
-so they will still be here when you get back.
+Doors are unusual, but you'll get the hang of them. If you get confused or
+frustrated, take a break and come back to it. They'll be here when you get back.
