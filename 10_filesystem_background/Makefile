@@ -1,6 +1,6 @@
 include ../lib.mk
 
-test: server.door
+test: clean server.door
 	$(call emphasize, server.door exists as a normal file)
 	ls -AhlF server.door
 	$(call emphasize, We can rerun server. It is idempotent)
@@ -13,3 +13,6 @@ server.door: server
 
 server: server.c
 	$(CC) server.c -o $@
+
+clean:
+	rm -f server.door server

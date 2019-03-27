@@ -1,6 +1,6 @@
 include ../lib.mk
 
-test: server.door ## Attach a door to the filesystem
+test: clean server.door ## Attach a door to the filesystem
 	$(call emphasize, Show that the door exists. Notice its flags!)
 	ls -AhlF server.door 
 	kill `cat server.pid`
@@ -13,3 +13,6 @@ server.pid: server
 
 server: server.c
 	$(CC) server.c -o $@ 
+
+clean:
+	rm -f server.door server.pid server

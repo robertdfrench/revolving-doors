@@ -1,6 +1,6 @@
 include ../lib.mk
 
-test: client server.door
+test: clean client server.door
 	$(call emphasize, Calculate walltime for 1k door_calls)
 	./client
 	kill `cat server.pid`
@@ -16,3 +16,6 @@ server: server.c
 
 client: client.c
 	$(CC) client.c -o $@
+
+clean:
+	rm -f server.door server.pid server client

@@ -1,6 +1,6 @@
 include ../lib.mk
 
-test: server.door
+test: clean server.door
 	$(call emphasize, Kill the server by dereferencing its pid)
 	kill `cat server.pid`
 
@@ -14,3 +14,6 @@ server.pid: server
 
 server: server.c
 	$(CC) server.c -o $@ 
+
+clean:
+	rm -f server.door server.pid server

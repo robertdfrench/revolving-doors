@@ -1,6 +1,6 @@
 include ../lib.mk
 
-test: client proxy.door
+test: clean client proxy.door
 	$(call emphasize, Exchange a door through the proxy)
 	./client
 	$(call emphasize, Cleanup both server and proxy processes)
@@ -29,3 +29,8 @@ server: server.c
 
 client: client.c
 	$(CC) client.c -o $@
+
+clean:
+	rm -f server.door server.pid server
+	rm -f proxy.door proxy.pid proxy
+	rm -f client

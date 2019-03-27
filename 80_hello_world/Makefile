@@ -1,6 +1,6 @@
 include ../lib.mk
 
-test: client server.door ## Send a greeting to the server
+test: clean client server.door ## Send a greeting to the server
 	$(call emphasize, Exchange pleasantries with the server)
 	./client
 	kill `cat server.pid`
@@ -16,3 +16,6 @@ server: server.c
 
 client: client.c
 	$(CC) client.c -o $@
+
+clean:
+	rm -f server.door server.pid server client
