@@ -2,11 +2,11 @@
 We will set up a few conventions to help with this tutorial.
 
 ### Every lesson is its own project
-Each lesson has its own source code, README, and Makefile. You can build each
-one by entering its directory and typing `make test`. That will build and
-execute the lesson to prove to you that it works. Your task is to read the code
-and understand why it works. To make this easy, each lesson builds on the prior
-one by adding the least possible amount of code.
+Each lesson has its own source code, README, and [Makefile](Makefile). You can
+build each one by entering its directory and typing `make test`. That will build
+and execute the lesson to prove to you that it works. Your task is to read the
+code and understand why it works. To make this easy, each lesson builds on the
+prior one by adding the least possible amount of code.
 
 ### Error handling is everywhere
 You will see blocks like this sprinkled throughout the source code:
