@@ -16,7 +16,7 @@ proxy.pid: proxy server.door
 	./proxy &; echo $$! > $@
 
 proxy: proxy.c
-	cc proxy.c -o $@
+	$(CC) proxy.c -o $@
 
 server.door: server.pid
 	while [ ! -e $@ ]; do sleep 1; done
@@ -25,7 +25,7 @@ server.pid: server
 	./server &; echo $$! > $@
 
 server: server.c
-	cc server.c -o $@
+	$(CC) server.c -o $@
 
 client: client.c
-	cc client.c -o $@
+	$(CC) client.c -o $@

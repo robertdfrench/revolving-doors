@@ -12,4 +12,4 @@ server.door: server
 	./server
 
 server: server.c
-	cc server.c -o $@
+	$(CC) server.c -o $@

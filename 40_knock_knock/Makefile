@@ -12,7 +12,7 @@ server.pid: server
 	./server &; echo $$! > $@
 
 server: server.c
-	cc server.c -o $@
+	$(CC) server.c -o $@
 
 client: client.c
-	cc client.c -o $@
+	$(CC) client.c -o $@

@@ -13,4 +13,4 @@ server.pid: server
 	./server &; echo $$! > $@
 
 server: server.c
-	cc server.c -o $@ 
+	$(CC) server.c -o $@ 

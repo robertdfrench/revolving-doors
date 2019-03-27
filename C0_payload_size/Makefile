@@ -12,7 +12,7 @@ server.door: server.pid
 	while [ ! -e $@ ]; do sleep 1; done
 
 server: server.c
-	cc server.c -o $@
+	$(CC) server.c -o $@
 
 client: client.c
-	cc client.c -o $@
+	$(CC) client.c -o $@

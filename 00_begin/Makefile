@@ -6,4 +6,4 @@ test: server
 
 server: server.c
 	$(call emphasize, Compile the demo program)
-	cc $< -o $@
+	$(CC) $< -o $@
