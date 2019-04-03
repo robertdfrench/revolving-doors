@@ -1,5 +1,15 @@
 # Pass a door through a door
 *This is really the killer feature*
 
-This trick allows process B to give process A the ability to call a function in
-process C without A or C needing to know anything about each other.
+In this lesson, we show how to use the `door_return` call to pass an open door
+descriptor to another process. This can be a bit weird to wrap your head around,
+but it is an amazing capability.
+
+Consider three processes: A, B, and C. Process B creates a door which can be
+opened by A, then process C creates a door which can be opened by B. When A
+performs `door_call` on B's door, B can `door_return` its descriptor to C. When
+A's `door_call` completes, A will have a new open door descriptor pointing to
+the door that C opened for B. This allows A and C to communicate without
+explicit knowledge of one another's identities.
+
+*But why not let A and C communicate directly?*
