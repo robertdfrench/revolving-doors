@@ -6,6 +6,7 @@ server process, and return a string back to the client. These being polite
 programs, they will exchange pleasantries:
 
 > client: "Hello, World!"
+
 > server: "Well hello yourself!"
 
 Because we are both sending and receiving data, we will need to prepare room
