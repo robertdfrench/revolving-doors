@@ -7,8 +7,6 @@
 #include <sys/stat.h>
 #include <string.h>
 
-#include "common.h"
-
 void handle(void* cookie, char* args, size_t nargs, door_desc_t* descriptors, uint_t ndescriptors) {
 	char* secret = "s3cr3t_!nf0";
 	door_return(secret, strlen(secret), NULL, 0);

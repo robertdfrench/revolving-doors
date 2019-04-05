@@ -1,12 +1,10 @@
-#include <door.h>
-#include <stdio.h>
 #include <unistd.h>
 #include <stropts.h>
 #include <stdlib.h>
 #include <fcntl.h>
 #include <sys/stat.h>
-
-#include "common.h"
+#include <door.h>
+#include <stdio.h>
 
 void handle(void* cookie, char* args, size_t nargs, door_desc_t* descriptors, uint_t ndescriptors) {
 	char* path = "server.door";

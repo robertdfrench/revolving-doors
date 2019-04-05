@@ -6,8 +6,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "common.h"
-
 int main(int argc, char** argv) {
 	time_t t[2];
 
