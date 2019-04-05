@@ -13,3 +13,14 @@ the door that C opened for B. This allows A and C to communicate without
 explicit knowledge of one another's identities.
 
 *But why not let A and C communicate directly?*
+
+In this situation, process B has the opportunity to decide whether A and C
+should communicate. For example, B may require some form of credentials from A
+before allowing access to C. This allows C to focus on doing what it does best,
+leaving it up to B to focus on the authentication question.
+
+As another example, B could act as a sortof router: inspecting the requests
+coming from A before handing A a door descriptor either to C or some other door
+server process as appropriate.
+
+This is weird, and it's worth thinking about slowly.
