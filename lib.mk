@@ -2,14 +2,11 @@
 
 CC=$(shell which cc || which gcc || (echo "You need to install a C compiler to run these tests."; exit 1))
 
-help:
-	@# Help Menu due to https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
-	@grep -Eh '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
-		| sort \
-		| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
-
 announce=@printf "\n\033[31m\#\# $(1)\033[0m\n"
 emphasize=@printf "\033[36m($(1) )\033[0m\n"
+
+help:
+	$(call announce, Run 'make test' to build and run the exercises)
 
 host_check: illumos $(CC);
 
