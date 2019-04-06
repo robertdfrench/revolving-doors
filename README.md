@@ -1,3 +1,5 @@
+Get Started: [Before we Begin](00_begin/ "Before we Begin")
+
 # Revolving Doors
 *Learning the Illumos Doors API*
 

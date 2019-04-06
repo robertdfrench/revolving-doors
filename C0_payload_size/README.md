@@ -1,3 +1,5 @@
+[Previous](.././A0_return_sizes/README.md) | [Next](.././E0_door_through_door/README.md)
+
 # What all can we fit through a door?
 
 It appears that the maximum message size is between 1,975 and 1,976 KB on

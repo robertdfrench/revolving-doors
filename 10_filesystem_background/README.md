@@ -1,3 +1,5 @@
+[Previous](.././00_begin/README.md) | [Next](.././18_backgrounding_processes/README.md)
+
 # Preparing to hang the door
 Because doors have a filesystem representation, we need to make sure they have a
 nice, clean place to live on the filesytem. This means creating a new, empty
