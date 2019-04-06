@@ -24,9 +24,8 @@ about the following:
 Of course, to play with doors, you will need access to Illumos! I recommend
 these two routes, depending on your preferences:
 
-* Want a local install? Download [openindiana](https://www.openindiana.org).
-  * [Install GCC on OpenIndiana](https://www.openindiana.org/2017/05/05/gcc-7-1-added-the-hipster-and-rolling-forward/)
-* Just want to spin up a cloud instance? Try [Joyent](https://www.joyent.com).
+* Want to run it in a VM on your desktop? Try [OpenIndiana](OpenIndiana.md).
+* Just want to spin up a cloud instance? I like SmartOS on [Joyent](https://www.joyent.com).
 
 Doors are super lightweight, so feel free to be as cheap as you want. You will
 not need significant resources for this tutorial.
