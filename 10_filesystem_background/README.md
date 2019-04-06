@@ -9,3 +9,5 @@ the following system calls:
 
 Run `make test` to see this lesson in action. Notice how we can run `./server`
 once to create the file, and then run it again without producing an error.
+
+![stat-creat](stat-creat.svg)
