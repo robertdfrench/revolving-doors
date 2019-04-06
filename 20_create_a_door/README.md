@@ -14,6 +14,8 @@ call referenced below.
 If that succeeds, we can attach this file descriptor to the filesystem using the
 `fattach` call. 
 
+![create-door](create-door.svg)
+
 Run `make test` to build and launch this version of the door server in the
 background. Now run `ls -AhlF server.door` and take a close look at the output.
 You should see something like the following:
