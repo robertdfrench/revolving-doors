@@ -5,6 +5,8 @@ Illumos Doors are a novel form of inter-process communication. They allow a
 thread in a client process to call a function in a server process, automatically
 spawning a handler thread in the server process if needed.
 
+![overview](overview.svg)
+
 This repository includes a set of annotated code examples of increasing
 complexity, each of which discusses a different aspect of the doors API. Though
 unusual, this API is not very big. The goal of this project is to help folks
