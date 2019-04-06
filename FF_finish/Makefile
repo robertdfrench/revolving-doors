@@ -1,2 +1,6 @@
+include ../lib.mk
+
+.PHONY: test
+
 test:
-	$(info You passed)
+	$(call emphasize, You passed)
