@@ -5,8 +5,8 @@ In this lesson, we show how to use the `door_return` call to pass an open door
 descriptor to another process. This can be a bit weird to wrap your head around,
 but it is an amazing capability.
 
-Consider three processes: **client**, **proxy**, and **server**. Process **proxy** creates a door which can be
-opened by **client**, then process **server** creates a door which can be opened by **proxy**. When **client**
+Consider three processes: **client**, **proxy**, and **server**. Process **server** creates a door which can be
+opened by **proxy**, then process **proxy** creates a door which can be opened by **client**. When **client**
 performs `door_call` on **proxy**'s door, **proxy** can `door_return` its descriptor to **server**. When
 **client**'s `door_call` completes, **client** will have a new open door descriptor pointing to
 the door that **server** opened for **proxy**. This allows **client** and **server** to communicate without
