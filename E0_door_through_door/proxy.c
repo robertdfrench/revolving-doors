@@ -34,7 +34,7 @@ int main() {
 
         if (stat(path, &buf) < 0) {
                 int newfd;
-                if ((newfd = creat(path, 0444)) < 0) {
+                if ((newfd = creat(path, 0600)) < 0) {
                         perror("creat");
                         exit(1);
                 }
