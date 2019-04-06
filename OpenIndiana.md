@@ -1,9 +1,11 @@
 # Setup OpenIndiana on VirtualBox
 *From zero to Illumos in ten minutes*
 
-### Download Virtualbox
+### Install Virtualbox
 [Download Virtualbox](https://www.virtualbox.org/wiki/Downloads) for whatever
-platform you are running on your workstation.
+platform you are running on your workstation. Click through the installation
+wizard. You will likely need to give your permission to trust software written
+by Oracle. The irony...
 
 ### Download OpenIndiana
 [Download OpenIndiana](https://www.openindiana.org/download/). I suggest the
