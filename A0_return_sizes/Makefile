@@ -16,6 +16,3 @@ server: server.c
 
 client: client.c
 	$(CC) client.c -o $@
-
-clean:
-	rm -rf client server server.pid server.door

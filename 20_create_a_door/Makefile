@@ -13,6 +13,3 @@ server.pid: server
 
 server: server.c
 	$(CC) server.c -o $@ 
-
-clean:
-	rm -f server.door server.pid server

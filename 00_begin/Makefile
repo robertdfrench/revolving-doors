@@ -7,6 +7,3 @@ test: clean server
 server: server.c
 	$(call emphasize, Compile the demo program)
 	$(CC) $< -o $@
-
-clean:
-	rm -f server

@@ -29,8 +29,3 @@ server: server.c
 
 client: client.c
 	$(CC) client.c -o $@
-
-clean:
-	rm -f server.door server.pid server
-	rm -f proxy.door proxy.pid proxy
-	rm -f client

@@ -12,3 +12,17 @@ host_check: illumos $(CC);
 
 illumos:
 	@[ `uname` = SunOS ] || (echo "You need to be on Illumos to run these tests."; exit 1)
+
+clean: cleanExecutables cleanDoors cleanDoorFrames cleanPidFiles
+
+cleanExecutables:
+	@find . -type f -perm -111 -delete
+
+cleanDoors:
+	@find . -type D -delete
+
+cleanDoorFrames:
+	@find . -type f -name *.door -delete
+
+cleanPidFiles:
+	@find . -type f -name *.pid -delete
