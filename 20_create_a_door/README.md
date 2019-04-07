@@ -40,3 +40,4 @@ Now we will learn how to open doors and call door functions.
 
 ## Check for Understanding
 1. What changes about `server.door`'s attributes when `fattach` is called?
+1. How can we leverage the fact that a door has normal UNIX access permissions?
