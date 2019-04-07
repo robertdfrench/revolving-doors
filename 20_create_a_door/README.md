@@ -37,3 +37,6 @@ Now we will learn how to open doors and call door functions.
 * [FDETACH(3C)](https://illumos.org/man/3C/fdetach)
 * [DOOR_CREATE(3C)](https://illumos.org/man/3c/door_create)
 * [FATTACH(3C)](https://illumos.org/man/3C/fattach)
+
+## Check for Understanding
+1. What changes about `server.door`'s attributes when `fattach` is called?
