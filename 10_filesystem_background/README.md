@@ -13,3 +13,7 @@ Run `make test` to see this lesson in action. Notice how we can run `./server`
 once to create the file, and then run it again without producing an error.
 
 ![stat-creat](stat-creat.svg)
+
+## Check for Understanding
+1. Why call `creat` with `0400` permissions insted of `0600` or `0444`?
+1. Why call `stat` with `&buf` instead of just `buf`?
