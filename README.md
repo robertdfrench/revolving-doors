@@ -28,7 +28,7 @@ about the following:
 Of course, to play with doors, you will need access to Illumos! I recommend
 these two routes, depending on your preferences:
 
-* Want to run it in a VM on your desktop? Try [OpenIndiana](OpenIndiana.md).
+* Want to run it in a VM on your desktop? Try [OpenIndiana](appendices/OpenIndiana).
 * Just want to spin up a cloud instance? I like SmartOS on [Joyent](https://www.joyent.com).
 
 Doors are super lightweight, so feel free to be as cheap as you want. You will
