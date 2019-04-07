@@ -28,3 +28,7 @@ associated man pages can help you figure out why.
 ### Some words of encouragement
 Doors are unusual, but you'll get the hang of them. If you get confused or
 frustrated, take a break and come back to it. They'll be here when you get back.
+
+## Check for Understanding
+1. What system header defines `perror`?
+1. Why call `exit(1)` for an error instead of just returning normally?
