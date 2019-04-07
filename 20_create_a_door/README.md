@@ -1,4 +1,4 @@
-[Previous](.././18_backgrounding_processes/README.md) | [Next](.././40_knock_knock/README.md)
+[Previous](.././18_backgrounding_processes/) | [Next](.././40_knock_knock/)
 
 # Create a door
 *Create a door and show what it looks like on the filesystem*

@@ -1,4 +1,4 @@
-[Previous](.././10_filesystem_background/README.md) | [Next](.././20_create_a_door/README.md)
+[Previous](.././10_filesystem_background/) | [Next](.././20_create_a_door/)
 
 # Tricks for backgrounding processes with Make
 In Make, like UNIX, everything is a file. So if we want to run a process in the

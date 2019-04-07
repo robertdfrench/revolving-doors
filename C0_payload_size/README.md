@@ -1,4 +1,4 @@
-[Previous](.././A0_return_sizes/README.md) | [Next](.././E0_door_through_door/README.md)
+[Previous](.././A0_return_sizes/) | [Next](.././E0_door_through_door/)
 
 # What all can we fit through a door?
 

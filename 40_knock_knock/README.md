@@ -1,4 +1,4 @@
-[Previous](.././20_create_a_door/README.md) | [Next](.././80_hello_world/README.md)
+[Previous](.././20_create_a_door/) | [Next](.././80_hello_world/)
 
 # Knock Knock
 *Open a door and call a function in another process*

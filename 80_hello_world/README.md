@@ -1,4 +1,4 @@
-[Previous](.././40_knock_knock/README.md) | [Next](.././A0_return_sizes/README.md)
+[Previous](.././40_knock_knock/) | [Next](.././A0_return_sizes/)
 
 # Hello, World!
 *Send a message through a door to another process*

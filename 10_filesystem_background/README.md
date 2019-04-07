@@ -1,4 +1,4 @@
-[Previous](.././00_begin/README.md) | [Next](.././18_backgrounding_processes/README.md)
+[Previous](.././00_begin/) | [Next](.././18_backgrounding_processes/)
 
 # Preparing to hang the door
 Because doors have a filesystem representation, we need to make sure they have a

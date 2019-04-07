@@ -7,9 +7,18 @@ test: $(subst /,.test,$(sort $(wildcard */))) ## Run all tests
 	$(call announce,$*)
 	$(MAKE) -C $* test
 
-links:
-	@find . -type f -name README.md \
+updateLinks: relativeNavigationTable.txt
+	awk -f transform.awk $< \
+		| bash -ex
+	rm -f *.txt
+
+relativeNavigationTable.txt: navigationTable.txt
+	awk '{ sub("README.md","",$$1); sub("README.md","",$$3); print }' $< > $@
+
+navigationTable.txt: readmes.txt
+	awk -f navigation.awk $< > $@
+
+readmes.txt:
+	find . -type f -name README.md \
 		| grep -v "\./README.md" \
-		| sort \
-		| awk -f navigation.awk \
-		| awk -f transform.awk
+		| sort > $@

@@ -1,4 +1,4 @@
-[Next](.././10_filesystem_background/README.md)
+[Next](.././10_filesystem_background/)
 
 # Before we begin
 We will set up a few conventions to help with this tutorial.

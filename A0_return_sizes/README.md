@@ -1,4 +1,4 @@
-[Previous](.././80_hello_world/README.md) | [Next](.././C0_payload_size/README.md)
+[Previous](.././80_hello_world/) | [Next](.././C0_payload_size/)
 
 # Return Sizes
 
