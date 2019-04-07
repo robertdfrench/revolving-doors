@@ -1,4 +1,4 @@
-include ../lib.mk
+include ../etc/lib.mk
 
 test: clean client proxy.door
 	$(call emphasize, Exchange a door through the proxy)

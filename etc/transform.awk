@@ -7,4 +7,4 @@ $1 != "undefined" && $3 != "undefined" {
 $3 == "undefined" {
 	nav="[Previous](../" $1 ")"
 }
-{ print "awk -v nav=\"" nav "\" -f update.awk " $2 " > /tmp/transform && mv /tmp/transform " $2 }
+{ print "awk -v nav=\"" nav "\" -f etc/update.awk " $2 " > /tmp/transform && mv /tmp/transform " $2 }

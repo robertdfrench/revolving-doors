@@ -1,4 +1,4 @@
-include ../lib.mk
+include ../etc/lib.mk
 
 test: clean client server.door ## Send a greeting to the server
 	$(call emphasize, Call a function in the backgrounded server process)

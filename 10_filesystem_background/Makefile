@@ -1,4 +1,4 @@
-include ../lib.mk
+include ../etc/lib.mk
 
 test: clean server.door
 	$(call emphasize, server.door exists as a normal file)

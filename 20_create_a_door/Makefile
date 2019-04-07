@@ -1,4 +1,4 @@
-include ../lib.mk
+include ../etc/lib.mk
 
 test: clean server.door ## Attach a door to the filesystem
 	$(call emphasize, Show that the door exists. Notice its flags!)

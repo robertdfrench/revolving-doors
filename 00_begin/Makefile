@@ -1,4 +1,4 @@
-include ../lib.mk
+include ../etc/lib.mk
 
 test: clean server
 	$(call emphasize, Execute the demo program)

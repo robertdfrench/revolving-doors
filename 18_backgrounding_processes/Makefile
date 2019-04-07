@@ -1,4 +1,4 @@
-include ../lib.mk
+include ../etc/lib.mk
 
 test: clean server.door
 	$(call emphasize, Kill the server by dereferencing its pid)

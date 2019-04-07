@@ -8,5 +8,8 @@ proxy
 *.door
 *.pid
 
+# Intermediate Publishing Files
+*.txt
+
 # Editor files
 *.swp

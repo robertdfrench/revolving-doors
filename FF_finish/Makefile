@@ -1,4 +1,4 @@
-include ../lib.mk
+include ../etc/lib.mk
 
 .PHONY: test
 

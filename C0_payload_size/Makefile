@@ -1,4 +1,4 @@
-include ../lib.mk
+include ../etc/lib.mk
 
 test: clean client server.door
 	$(call emphasize, Calculate walltime for 1k door_calls)
