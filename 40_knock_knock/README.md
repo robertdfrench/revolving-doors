@@ -7,6 +7,8 @@ In this lesson, we introduce a client program defined in [client.c](client.c).
 Its job is to open `server.door` and call the `answer` function inside a running
 `server` process.
 
+![door-call](door-call.svg)
+
 Opening a door is not (on the whole) different from opening other filesystem
 resources in UNIX. Perhaps you are more accustomed to using `fopen` to deal with
 files, but that is really a convenience layer which delegates some work to the
