@@ -37,3 +37,9 @@ with it yet.
 ### New System Calls
 * [OPEN(2)](https://illumos.org/man/2/open)
 * [DOOR_CALL(3C)](https://illumos.org/man/3C/door_call)
+
+## Check for Understanding
+1. What permissions do we need for the `open` call to succeed?
+1. Which process's stdout prints the message when `answer` is called?
+1. What is going on in the server process before `door_call`?
+1. What is going on in the client process during `door_call`? 
