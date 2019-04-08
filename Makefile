@@ -1,6 +1,6 @@
 include etc/lib.mk
 
-test: $(subst /,.test,$(sort $(wildcard */))) ## Run all tests
+test: $(subst /,.test,$(sort $(wildcard *_*/))) ## Run all tests
 	$(info done!)
 
 %.test: host_check

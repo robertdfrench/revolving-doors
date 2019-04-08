@@ -22,7 +22,7 @@ cleanDoors:
 	@find . -type D -delete
 
 cleanDoorFrames:
-	@find . -type f -name *.door -delete
+	@find . -type f -name '*.door' -delete
 
 cleanPidFiles:
-	@find . -type f -name *.pid -delete
+	@find . -type f -name '*.pid' -delete
