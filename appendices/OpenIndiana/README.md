@@ -130,3 +130,23 @@ key of this new virtual machine is almost certainly not known to your desktop,
 so if you have ever used local port forwarding to access an SSH host before,
 that previous host's key will still be in your `~/.ssh/known_hosts` file. Just
 do what the message says -- hop in that file and delete the offending line.
+
+### Getting ready for the Tutorial
+The doors tutorial requires git, Make and a C compiler. To set these up, follow
+these steps (offering your root password when prompted by `su`):
+
+```bash
+su
+pkg install git
+pkg install gnu-make
+pkg install developer/gcc-8
+```
+
+Now make sure you can build all the lessons (that way you can straighten any
+missing dependencies out beforehand):
+
+```bash
+git clone https://github.com/robertdfrench/revolving-door.git
+cd revolving-door
+gmake test
+```
