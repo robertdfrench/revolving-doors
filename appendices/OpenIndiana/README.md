@@ -140,6 +140,7 @@ su
 pkg install git
 pkg install gnu-make
 pkg install developer/gcc-8
+pkg install system/header
 ```
 
 Now make sure you can build all the lessons (that way you can straighten any
