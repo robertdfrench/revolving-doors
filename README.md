@@ -1,9 +1,9 @@
 Get Started: [Before we Begin](00_begin/ "Before we Begin")
 
 # Revolving Doors
-*Learning the Illumos Doors API*
+*Learning the illumos Doors API*
 
-Illumos Doors are a novel form of inter-process communication. They allow a
+illumos Doors are a novel form of inter-process communication. They allow a
 thread in a client process to call a function in a server process, automatically
 spawning a handler thread in the server process if needed.
 
@@ -24,8 +24,8 @@ about the following:
 * C represents arrays by a pointer to the beginning of some data, and its length
 * `printf` takes some funky arguments, and you have to look those up sometimes.
 
-##### Illumos
-Of course, to play with doors, you will need access to Illumos! I recommend
+##### illumos
+Of course, to play with doors, you will need access to illumos! I recommend
 these two routes, depending on your preferences:
 
 * Want to run it in a VM on your desktop? Try [OpenIndiana](appendices/OpenIndiana).

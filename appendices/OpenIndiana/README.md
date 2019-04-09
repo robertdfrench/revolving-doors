@@ -1,5 +1,5 @@
 # Setup OpenIndiana on VirtualBox
-*From zero to Illumos in ten minutes*
+*From zero to illumos in ten minutes*
 
 ### Install Virtualbox
 [Download Virtualbox](https://www.virtualbox.org/wiki/Downloads) for whatever
