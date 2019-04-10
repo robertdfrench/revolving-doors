@@ -35,7 +35,6 @@ We will get to the NULL argument soon. It's super cool, but we can't do anything
 with it yet.
 
 ### New System Calls
-* [OPEN(2)](https://illumos.org/man/2/open)
 * [DOOR_CALL(3C)](https://illumos.org/man/3C/door_call)
 
 ## Check for Understanding

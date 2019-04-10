@@ -1,13 +1,12 @@
-#include <unistd.h>
-#include <stropts.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <sys/stat.h>
 #include <door.h>
 #include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <strings.h>
 #include <err.h>
 
-void handle(void* cookie, char* args, size_t nargs, door_desc_t* descriptors, uint_t ndescriptors) {
+void answer(void* cookie, char* args, size_t nargs, door_desc_t* descriptors, uint_t ndescriptors) {
 	char* path = "server.door";
         int door = open(path, O_RDONLY);
         if (door == -1) err(1, "Could not open door");
@@ -20,20 +19,13 @@ void handle(void* cookie, char* args, size_t nargs, door_desc_t* descriptors, ui
 }
 
 int main() {
-        struct stat buf;
-
 	char* path = "proxy.door";
 
-        int door = door_create(&handle, NULL, 0);
+        int door = door_create(&answer, NULL, 0);
         if (door == -1) err(1, "Handle cannot be attached to door");
 
-        if (stat(path, &buf) < 0) {
-                int newfd;
-                if ((newfd = creat(path, 0600)) < 0) err(1, "creat");
-                close(newfd);
-        }
-
-        fdetach(path);
+	int fd = open(path, O_RDWR|O_CREAT|O_EXCL, 0400);
+	if (fd < 0) err(1, "Could not create a new file for the door");
 
         int attachment = fattach(door, path);
         if (attachment == -1) err(1, "Could not attach door to server.door");
