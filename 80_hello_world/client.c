@@ -5,6 +5,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <strings.h>
+#include <err.h>
 
 int main(int argc, char** argv) {
 	char* path = "server.door";
@@ -16,10 +17,7 @@ int main(int argc, char** argv) {
 	char response[32];
 
         int door = open(path, O_RDONLY);
-        if (door == -1) {
-                perror("Could not open door");
-                exit(1);
-        }
+        if (door == -1) err(1, "Could not open door");
 
 	// Configure a "door argument" with our greeting and response
         door_arg_t args;
@@ -36,10 +34,7 @@ int main(int argc, char** argv) {
 
 	// Call the 'answer' function in server.c, passing it our greeting
 	int result = door_call(door, &args);
-	if (result == -1) {
-		perror("Could not call door");
-		exit(1);
-	}
+	if (result == -1) err(1, "My door request could not be placed");
 
 	// We expect the server's response to be printed:
 	printf("%s\n", response);

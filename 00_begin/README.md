@@ -11,13 +11,10 @@ code and understand why it works. To make this easy, each lesson builds on the
 prior one by adding the least possible amount of code.
 
 ### Error handling is everywhere
-You will see blocks like this sprinkled throughout the source code:
+You will see lines like this sprinkled throughout the source code:
 
 ```c
-if (result == -1) {
-	perror("A terrible thing has happened");
-	exit(1);
-}
+if (result == -1) err(1, "A terrible thing has happened");
 ```
 
 This makes the code somewhat messier to read, but it is a great aide to
@@ -30,5 +27,5 @@ Doors are unusual, but you'll get the hang of them. If you get confused or
 frustrated, take a break and come back to it. They'll be here when you get back.
 
 ## Check for Understanding
-1. What system header defines `perror`?
-1. Why call `exit(1)` for an error instead of just returning normally?
+1. What system header defines `err`?
+1. Why bother exiting early for an error instead of just returning normally?

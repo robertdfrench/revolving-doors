@@ -44,3 +44,8 @@ internet. Here is what I have been able to gather, in order of usefulness:
 * [Door API Details](https://blogs.oracle.com/tucker/door-api-details)
 * [illumos-fuse2](https://bitbucket.org/gwr/illumos-fuse2)
 * [Linux Doors](http://ldoor.sourceforge.net) 
+
+### Special Thanks
+* @jack-morrison and @AnthonyDiGirolamo for encouraging me to get the OpenIndiana setup guide together
+* Nicole Deasy for suggesting explicit forward/backward navigation over github's built-in nav
+* [u/jking13](https://www.reddit.com/user/jking13) for [this excellent feedback](https://www.reddit.com/r/illumos/comments/babxsl/doors_api_tutorial/eke7es9/)

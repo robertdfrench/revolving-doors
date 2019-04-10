@@ -5,6 +5,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <strings.h>
+#include <err.h>
 
 int main(int argc, char** argv) {
 	char* path = "server.door";
@@ -12,10 +13,7 @@ int main(int argc, char** argv) {
 	char response[32];
 
         int door = open(path, O_RDONLY);
-        if (door == -1) {
-                perror("Could not open door");
-                exit(1);
-        }
+        if (door == -1) err(1, "Could not open door");
 
         door_arg_t args;
         args.data_ptr = greeting;
@@ -26,10 +24,7 @@ int main(int argc, char** argv) {
         args.desc_num = 0;
 
 	int result = door_call(door, &args);
-	if (result == -1) {
-		perror("Could not call door");
-		exit(1);
-	}
+	if (result == -1) err(1, "My door request could not be placed");
 
 	// Doesn't it look better properly formatted?
 	printf("The server's response is %d bytes long\n", args.data_size);

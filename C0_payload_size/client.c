@@ -5,6 +5,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <time.h>
+#include <err.h>
 
 #include "common.h"
 
@@ -13,10 +14,7 @@ int main(int argc, char** argv) {
 
 	char* path = "server.door";
         int door = open(path, O_RDONLY);
-        if (door == -1) {
-                perror("Could not open door");
-                exit(1);
-        }
+        if (door == -1) err(1, "Could not open door");
 
         door_arg_t args;
         args.data_ptr = calloc(nelem, elsize);
@@ -29,10 +27,7 @@ int main(int argc, char** argv) {
 	t[0] = time(NULL);
 	for(int i = 0; i < iterations; i++) {
 		int result = door_call(door, &args);
-		if (result == -1) {
-			perror("Could not call door");
-			exit(1);
-		}
+		if (result == -1) err(1, "Could not call door");
 	}
 	t[1] = time(NULL);
 

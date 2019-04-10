@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <sys/stat.h>
+#include <err.h>
 
 #include "common.h"
 
@@ -18,27 +19,18 @@ int main() {
 	char* path = "server.door";
 
         int door = door_create(&handle, calloc(nelem, elsize), 0);
-        if (door == -1) {
-                perror("Handle cannot be attached to door");
-                exit(1);
-        }
+        if (door == -1) err(1, "Handle cannot be attached to door");
 
         if (stat(path, &buf) < 0) {
                 int newfd;
-                if ((newfd = creat(path, 0600)) < 0) {
-                        perror("creat");
-                        exit(1);
-                }
+                if ((newfd = creat(path, 0600)) < 0) err(1, "creat");
                 close(newfd);
         }
 
         fdetach(path);
 
         int attachment = fattach(door, path);
-        if (attachment == -1) {
-                perror("Could not attach door to server.door");
-                exit(1);
-        }
+        if (attachment == -1) err(1, "Could not attach door to server.door");
 
         printf("%s will remain attached to this process for 1 hour\n", path);
 

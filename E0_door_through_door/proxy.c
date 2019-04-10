@@ -5,14 +5,12 @@
 #include <sys/stat.h>
 #include <door.h>
 #include <stdio.h>
+#include <err.h>
 
 void handle(void* cookie, char* args, size_t nargs, door_desc_t* descriptors, uint_t ndescriptors) {
 	char* path = "server.door";
         int door = open(path, O_RDONLY);
-        if (door == -1) {
-                perror("Could not open door");
-                exit(1);
-        }
+        if (door == -1) err(1, "Could not open door");
 
         door_desc_t w_descriptor;
         w_descriptor.d_attributes = DOOR_DESCRIPTOR;
@@ -27,27 +25,18 @@ int main() {
 	char* path = "proxy.door";
 
         int door = door_create(&handle, NULL, 0);
-        if (door == -1) {
-                perror("Handle cannot be attached to door");
-                exit(1);
-        }
+        if (door == -1) err(1, "Handle cannot be attached to door");
 
         if (stat(path, &buf) < 0) {
                 int newfd;
-                if ((newfd = creat(path, 0600)) < 0) {
-                        perror("creat");
-                        exit(1);
-                }
+                if ((newfd = creat(path, 0600)) < 0) err(1, "creat");
                 close(newfd);
         }
 
         fdetach(path);
 
         int attachment = fattach(door, path);
-        if (attachment == -1) {
-                perror("Could not attach door to proxy.door");
-                exit(1);
-        }
+        if (attachment == -1) err(1, "Could not attach door to server.door");
 
         printf("%s will remain attached to this process for 1 hour\n", path);
 
