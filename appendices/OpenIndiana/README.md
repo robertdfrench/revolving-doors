@@ -9,8 +9,9 @@ by Oracle. The irony...
 
 ### Download OpenIndiana
 [Download OpenIndiana](https://www.openindiana.org/download/). I suggest the
-minimal install, as that takes up the least space. The rest of this guide will
-walk you through setting up what packages you need to run the lessons.
+minimal DVD install, as that takes up the least space and is a .iso easily used 
+with VirtualBox. This tutorial The rest of this guide will walk you through 
+setting up what packages you need to run the lessons.
 
 ### Create a VM
 Within virtualbox, create a new VM named 'openindiana':
