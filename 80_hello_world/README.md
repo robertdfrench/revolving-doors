@@ -11,6 +11,8 @@ programs, they will exchange pleasantries:
 
 > server: "Well hello yourself!"
 
+![hello-yourself](hello-yourself.svg)
+
 Because we are both sending and receiving data, we will need to prepare room
 in [client.c](client.c) for two strings: the `greeting` we want to send and
 the `response` we expect to receive.
@@ -47,5 +49,7 @@ Once we have this struct configured, we pass it to the doors library like so:
 door_call(door, &args);
 ```
 
-Take it for a spin with `make test` and let's see what comes out! What's with
-the funny output after the server's response?
+Take it for a spin with `make test` and let's see what comes out!
+
+## Check for Understanding
+1. What's with the funny output after the server's response?
