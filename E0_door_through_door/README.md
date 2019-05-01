@@ -1,11 +1,10 @@
 [Previous](.././C0_door_bandwidth/) | [Next](.././FF_finish/)
 
 # Pass a door through a door
-*This is really the killer feature*
-
 In this lesson, we show how to use the `door_return` call to pass an open door
-descriptor to another process. This can be a bit weird to wrap your head around,
-but it is an amazing capability.
+descriptor to another process. Descriptor passing is an important feature of
+UNIX IPC in general, but the doors api does so in a way that is reminiscent of
+passing a lambda function.
 
 Consider three processes: **client**, **proxy**, and **server**. Process **server** creates a door which can be
 opened by **proxy**, then process **proxy** creates a door which can be opened by **client**. When **client**
