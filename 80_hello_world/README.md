@@ -33,8 +33,7 @@ typedef struct {
 ```
 
 At the moment we care about `data_ptr`, `data_size`, `rbuf`, and `rsize`. We
-will discuss the descriptor fields later (but stick around, because they are
-the best part!).
+will discuss the descriptor fields later.
 
 The address of our greeting will go in `data_ptr`, and its length will go in
 `data_size`. Why they used a separate naming convention for the return values
