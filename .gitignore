@@ -13,3 +13,6 @@ proxy
 
 # Editor files
 *.swp
+
+# Apple Desktop Services
+.DS_Store
