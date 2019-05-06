@@ -46,6 +46,7 @@ internet. Here is what I have been able to gather, in order of usefulness:
 * [Linux Doors](http://ldoor.sourceforge.net) 
 
 ### Special Thanks
-* @jack-morrison and @AnthonyDiGirolamo for encouraging me to get the OpenIndiana setup guide together
+* [@jack-morrison](https://github.com/jack-morrison) and [@AnthonyDiGirolamo](https://github.com/AnthonyDiGirolamo) for encouraging me to get the OpenIndiana setup guide together
 * Nicole Deasy for suggesting explicit forward/backward navigation over github's built-in nav
-* [u/jking13](https://www.reddit.com/user/jking13) for [this excellent feedback](https://www.reddit.com/r/illumos/comments/babxsl/doors_api_tutorial/eke7es9/)
+* [@jasonbking](https://github.com/jasonbking) for [this excellent feedback](https://www.reddit.com/r/illumos/comments/babxsl/doors_api_tutorial/eke7es9/)
+* The excellent [Mermaid](https://mermaidjs.github.io/) library which was used to create the diagrams in each lesson
