@@ -14,13 +14,7 @@ int main(int argc, char** argv) {
 	int proxy = open(path, O_RDONLY);
 	if (proxy == -1) err(1, "Could not open door");
 
-	door_arg_t args;
-	args.data_ptr = NULL;
-	args.data_size = 0;
-	args.desc_ptr = NULL;
-	args.desc_num = 0;
-	args.rbuf = NULL;
-	args.rsize = 0;
+	door_arg_t args = {0};
 
 	int result = door_call(proxy, &args);
 	if (result == -1) err(1, "Could not call door");

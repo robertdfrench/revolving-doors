@@ -1,4 +1,4 @@
-[Previous](.././40_knock_knock/) | [Next](.././A0_return_sizes/)
+[Previous](.././40_knock_knock/) | [Next](.././A0_result_parameters/)
 
 # Hello, World!
 *Send a message through a door to another process*
@@ -13,14 +13,9 @@ programs, they will exchange pleasantries:
 
 ![hello-yourself](hello-yourself.svg)
 
-Because we are both sending and receiving data, we will need to prepare room
-in [client.c](client.c) for two strings: the `greeting` we want to send and
-the `response` we expect to receive.
-
 What we provide to the doors library is not this data, but rather the
-addresses and lengths of these two strings (or, in the case of the response,
-the maximum length we expect from the server). The structure that holds these
-addresses and lengths is a `door_arg_t` and it looks like this:
+addresses and lengths of these two strings. For the client, the structure that
+holds these addresses and lengths is a `door_arg_t` and it looks like this:
 
 ```c
 // from DOOR_CALL(3C) in the illumos manual
@@ -34,14 +29,8 @@ typedef struct {
 } door_arg_t;
 ```
 
-At the moment we care about `data_ptr`, `data_size`, `rbuf`, and `rsize`. We
-will discuss the descriptor fields later.
-
 The address of our greeting will go in `data_ptr`, and its length will go in
-`data_size`. Why they used a separate naming convention for the return values
-is beyond me, but they did: the address where we want the response written
-goes in `rbuf` and the maximum number of bytes we are willing to accept goes
-in `rsize`.
+`data_size`. We will discuss the other fields later.
 
 Once we have this struct configured, we pass it to the doors library like so:
 
@@ -52,4 +41,5 @@ door_call(door, &args);
 Take it for a spin with `make test` and let's see what comes out!
 
 ## Check for Understanding
-1. What's with the funny output after the server's response?
+1. Why do we pass a pointer to `args` instead of `args` itself?
+1. Before we called `door_call`, the value of `args.data_ptr` was equal to `greeting`. Will this be the case once `door_call` returns?

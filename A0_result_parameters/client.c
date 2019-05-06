@@ -10,24 +10,20 @@
 int main(int argc, char** argv) {
 	char* path = "server.door";
 	char* greeting = "Hello, World!";
-	char response[32];
 
 	int door = open(path, O_RDONLY);
 	if (door == -1) err(1, "Could not open door");
 
-	door_arg_t args;
+	door_arg_t args = {0};
 	args.data_ptr = greeting;
-	args.rbuf = response;
 	args.data_size = strlen(greeting);
-	args.rsize = 32;
-	args.desc_ptr = NULL;
-	args.desc_num = 0;
 
 	int result = door_call(door, &args);
 	if (result == -1) err(1, "My door request could not be placed");
 
-	// Doesn't it look better properly formatted?
-	printf("The server's response is %d bytes long\n", args.data_size);
-	printf("The server's response is: %.*s\n", args.data_size, response);
+	// Let's see what's actually being returned
+	printf("The total result size is %d bytes long\n", args.rsize);
+	printf("The server's data response is %d bytes long\n", args.data_size);
+	printf("The server's data response is: %s\n", args.data_ptr);
 	return 0;
 }

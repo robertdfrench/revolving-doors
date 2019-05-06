@@ -20,4 +20,5 @@ navigationTable.txt: readmes.txt
 readmes.txt:
 	find . -type f -name README.md \
 		| grep -v "\./README.md" \
+		| grep -v "appendices" \
 		| sort > $@
