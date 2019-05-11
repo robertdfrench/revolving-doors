@@ -6,7 +6,7 @@ descriptor to another process. This technique can allow a door server (running
 as user A) to give read access to a door client (running as user B) even if the
 filesystem permissions would not normally allow user B to read the file.
 
-![file-through-door](file_through_door.svg)
+![file-through-door](file_through_door.png)
 
 This ability to pass open file descriptors to other processes is a standard (and
 clever!) feature of UNIX IPC.
