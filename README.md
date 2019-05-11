@@ -50,3 +50,4 @@ internet. Here is what I have been able to gather, in order of usefulness:
 * Nicole Deasy for suggesting explicit forward/backward navigation over github's built-in nav
 * [@jasonbking](https://github.com/jasonbking) for [this excellent feedback](https://www.reddit.com/r/illumos/comments/babxsl/doors_api_tutorial/eke7es9/)
 * The excellent [Mermaid](https://mermaidjs.github.io/) library which was used to create the diagrams in each lesson
+* [Social Media icon](https://commons.wikimedia.org/wiki/File:Revolving_Door_Sign.jpg) due to [Daniel Lobo](https://www.flickr.com/photos/daquellamanera/), licensed [(CC BY-SA 2.0)](https://creativecommons.org/licenses/by-sa/2.0/deed.en). Retrieved at the time of this commit.
