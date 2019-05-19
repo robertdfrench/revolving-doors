@@ -55,9 +55,9 @@ your previously configured instance boot, note its ip address:
 
 ### Install the dependencies we need for this tutorial
 ```bash
-pkgin install git-2.19.1
-pkgin install gmake-4.2.1nb1
-pkgin install gcc8-8.2.0
+pkgin -y install git-2.19.1
+pkgin -y install gmake-4.2.1nb1
+pkgin -y install gcc8-8.2.0
 echo 'PATH=$PATH:/opt/local/gcc8/bin' >> ~/.profile
 source ~/.profile
 git clone https://github.com/robertdfrench/revolving-door.git
