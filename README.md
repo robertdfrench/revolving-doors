@@ -26,13 +26,7 @@ about the following:
 
 ##### illumos
 Of course, to play with doors, you will need access to illumos! I recommend
-these two routes, depending on your preferences:
-
-* Want to run it in a VM on your desktop? Try [OpenIndiana](appendices/OpenIndiana).
-* Just want to spin up a cloud instance? I like SmartOS on [Joyent](appendices/SmartOS).
-
-Doors are super lightweight, so feel free to be as cheap as you want. You will
-not need significant resources for this tutorial.
+installing [OpenIndiana](appendices/OpenIndiana) on a VM on your workstation.
 
 ### Sources
 I am writing this because there seems to be so little about doors on the 
