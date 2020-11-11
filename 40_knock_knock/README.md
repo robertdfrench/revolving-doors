@@ -22,7 +22,7 @@ system which filesystem resource we would like to act upon.
 To call a function in another process via a door, we take an approach that is
 not dissimilar from calling a local function: we need a reference to the
 function and a collection of arguments to pass it. In this case, the reference
-to the function is the file descriptor for the door, and the arguments need to
+to the function is the file descriptor for the door, and the arguments need to be
 packed into a single char array. And since the language itself doesn't support
 "calling" the descriptor like we would a normal function, we need to rely on the
 doors api:
