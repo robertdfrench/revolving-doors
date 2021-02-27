@@ -36,6 +36,7 @@ internet. Here is what I have been able to gather, in order of usefulness:
 * [DOOR_CREATE(3C)](https://illumos.org/man/3C/door_create)
 * Section 4.8 "Solaris Doors" of *Solaris Internals: Solaris 10 and OpenSolaris Kernel Architecture, Second Edition*, Prentice Hall, 2006, ISBN 0-13-148209-2.
 * ["Doors" in SolarisTM: Lightweight RPC using File Descriptors](http://www.kohala.com/start/papers.others/doors.html)
+* Slides 28-36 of ["OpenSolaris Overview  lecture"](http://www.haifux.org/lectures/160/) by [Rami Rosen](https://ramirose.wixsite.com/ramirosen)
 * [Linux Doors](http://ldoor.sourceforge.net) 
 
 ### Special Thanks
