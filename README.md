@@ -27,6 +27,8 @@ about the following:
 ##### illumos
 Of course, to play with doors, you will need access to illumos! I recommend
 installing [OpenIndiana](appendices/OpenIndiana) on a VM on your workstation.
+Or, if you are an AWS customer, you might find it easier to launch an
+[OmniOS](appendices/OmniOS-AWS) instance in your AWS account.
 
 ### Sources
 I am writing this because there seems to be so little about doors on the 
