@@ -40,6 +40,7 @@ internet. Here is what I have been able to gather, in order of usefulness:
 * ["Doors" in SolarisTM: Lightweight RPC using File Descriptors](http://www.kohala.com/start/papers.others/doors.html)
 * Slides 28-36 of ["OpenSolaris Overview  lecture"](http://www.haifux.org/lectures/160/) by [Rami Rosen](https://ramirose.wixsite.com/ramirosen)
 * [Linux Doors](http://ldoor.sourceforge.net) 
+* [*An Implementation of the Solaris Doors API for Linux*](https://www.researchgate.net/publication/2485752_An_Implementation_of_the_Solaris_Doors_API_for_Linux) by Jason Lango
 
 ### Special Thanks
 * [@jack-morrison](https://github.com/jack-morrison) and [@AnthonyDiGirolamo](https://github.com/AnthonyDiGirolamo) for encouraging me to get the OpenIndiana setup guide together
