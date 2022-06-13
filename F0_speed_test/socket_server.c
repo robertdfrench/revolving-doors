@@ -7,6 +7,7 @@
 #include <strings.h>
 #include <err.h>
 #include <stdint.h>
+#include <stdbool.h>
 
 int main() {
 	char* path = "socket_server.sock";
@@ -20,27 +21,35 @@ int main() {
         address.sun_family = AF_UNIX;
         strncpy(address.sun_path, path, sizeof(address.sun_path) - 1);
 
+        rc = unlink(path);
+        if (rc == -1) err(1, "Could not remove old socket fixture");
+
         rc = bind(socket_fd, (const struct sockaddr*) &address, sizeof(struct sockaddr_un));
         if (rc == -1) err(1, "Could not bind socket to filesystem");
 
         rc = listen(socket_fd, 1);
         if (rc == -1) err(1, "Could not put socket in listening mode");
 
-        int client_fd = accept(socket_fd, NULL, NULL);
-        if (client_fd == -1) err(1, "Could not accept new connection");
-
-        int64_t buffer;
         while(true) {
-            rc = read(client_fd, (char*) &buffer, sizeof(int64_t));
-            if (rc == -1) err(1, "Could not read an int64_t from the client");
+            int client_fd = accept(socket_fd, NULL, NULL);
+            if (client_fd == -1) err(1, "Could not accept new connection");
+            int options = 1;
+            rc = setsockopt(client_fd, SOL_SOCKET, SO_NOSIGPIPE, (void *)&options, sizeof(int));
 
-            buffer += 1;
+            while(true) {
+                int64_t buffer;
+                rc = read(client_fd, (char*) &buffer, sizeof(int64_t));
+                if (rc == -1) break;
 
-            rc = write(client_fd, (char*) &buffer, sizeof(int64_t));
-            if (rc == -1) err(1, "Could not write response to client");
+                buffer += 1;
+
+                rc = write(client_fd, (char*) &buffer, sizeof(int64_t));
+                if (rc == -1) break;
+            }
+            rc = close(client_fd);
+            if (rc == -1) break;
         }
-        close(client_fd);
-        
+        close(socket_fd);
 	
 	return 0;
 }

@@ -7,7 +7,7 @@ test_door: clean door_client door_server.door ## Run Door Benchmark
 	./door_client
 	kill `cat door_server.pid`
 
-test_socket: clean socket_client socket_server.sock ## Run Socket Benchmark
+test_socket: socket_client socket_server.sock ## Run Socket Benchmark
 	$(call emphasize, Exchange pleasantries with the socket_server)
 	./socket_client
 	kill `cat socket_server.pid`

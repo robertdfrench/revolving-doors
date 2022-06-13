@@ -1,3 +1,4 @@
+#include <unistd.h>
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -7,24 +8,31 @@
 #include <stdlib.h>
 #include <strings.h>
 #include <err.h>
-#include <stdint.h>
 
 int main(int argc, char** argv) {
 	char* path = "socket_server.sock";
+        int rc;
 
-	int door = open(path, O_RDONLY);
-	if (door == -1) err(1, "Could not open door");
+        int server_fd = socket(AF_UNIX, SOCK_STREAM, 0);
+        if (server_fd == -1) err(1, "Could not create socket");
 
-	door_arg_t args = {0};
-	args.data_ptr = greeting;
-	args.data_size = strlen(greeting);
+        struct sockaddr_un address;
+        memset(&address, 0, sizeof(struct sockaddr_un));
+        address.sun_family = AF_UNIX;
+        strncpy(address.sun_path, path, sizeof(address.sun_path) - 1);
 
-	int result = door_call(door, &args);
-	if (result == -1) err(1, "My door request could not be placed");
+        rc = connect(server_fd, (const struct sockaddr *) &address, sizeof(struct sockaddr_un));
+        if (rc == -1) err(1, "Could not connect socket to server path");
 
-	// Let's see what's actually being returned
-	printf("The total result size is %d bytes long\n", args.rsize);
-	printf("The server's data response is %d bytes long\n", args.data_size);
-	printf("The server's data response is: %s\n", args.data_ptr);
+        int counter = 0;
+        while(counter < 1000000) {
+            rc = write(server_fd, &counter, sizeof(int));
+            if (rc == -1) err(1, "Failed to send counter to server");
+
+            rc = read(server_fd, &counter, sizeof(int));
+            if (rc == -1) err(1, "Failed to read new counter from server");
+        }
+        
+        printf("Counter Value: %lld\n", counter);
 	return 0;
 }

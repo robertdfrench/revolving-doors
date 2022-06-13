@@ -1,0 +1,3 @@
+*.sock
+*_server
+*_client
