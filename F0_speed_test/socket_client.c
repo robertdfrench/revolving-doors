@@ -9,6 +9,8 @@
 #include <strings.h>
 #include <err.h>
 
+#include "common.h"
+
 int main(int argc, char** argv) {
 	char* path = "socket_server.sock";
         int rc;
@@ -25,7 +27,7 @@ int main(int argc, char** argv) {
         if (rc == -1) err(1, "Could not connect socket to server path");
 
         int counter = 0;
-        while(counter < 1000000) {
+        while(counter < ROUNDS) {
             rc = write(server_fd, &counter, sizeof(int));
             if (rc == -1) err(1, "Failed to send counter to server");
 
@@ -33,6 +35,6 @@ int main(int argc, char** argv) {
             if (rc == -1) err(1, "Failed to read new counter from server");
         }
         
-        printf("Counter Value: %lld\n", counter);
+        printf("Counter Value: %d\n", counter);
 	return 0;
 }

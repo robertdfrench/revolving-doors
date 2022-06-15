@@ -7,23 +7,30 @@
 #include <strings.h>
 #include <err.h>
 
+#include "common.h"
+
 int main(int argc, char** argv) {
 	char* path = "door_server.door";
-	char* greeting = "Hello, World!";
+	int rc;
+	int counter = 0;
 
 	int door = open(path, O_RDONLY);
 	if (door == -1) err(1, "Could not open door");
 
-	door_arg_t args = {0};
-	args.data_ptr = greeting;
-	args.data_size = strlen(greeting);
+	for(int i = 0; i < ROUNDS; i++) {
+		door_arg_t args = {0};
+		args.data_ptr = ((char*) &counter);
+		args.data_size = sizeof(int);
+		args.rbuf = ((char*) &counter);
+		args.rsize = sizeof(int);
 
-	int result = door_call(door, &args);
-	if (result == -1) err(1, "My door request could not be placed");
+		rc = door_call(door, &args);
+		if (rc == -1) err(1, "My door request could not be placed");
+
+		counter =  *((int*) args.data_ptr);
+	};
 
 	// Let's see what's actually being returned
-	printf("The total result size is %d bytes long\n", args.rsize);
-	printf("The server's data response is %d bytes long\n", args.data_size);
-	printf("The server's data response is: %s\n", args.data_ptr);
+	printf("Counter Value: %d\n", counter);
 	return 0;
 }

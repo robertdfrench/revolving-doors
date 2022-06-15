@@ -13,6 +13,7 @@ provision_lab_host: build/provision.stamp ##: Configure lab environment
 
 build/provision.stamp: build/lab_setup.mk.stamp build/lab_key build/ipv4_address
 	ssh -i build/lab_key root@`cat build/ipv4_address` make -f lab_setup.mk
+	@touch $@
 
 build/lab_setup.mk.stamp: lab_setup.mk build/lab_key build/ipv4_address | build/
 	scp -i build/lab_key lab_setup.mk root@`cat build/ipv4_address`:~/

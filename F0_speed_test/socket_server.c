@@ -21,9 +21,6 @@ int main() {
         address.sun_family = AF_UNIX;
         strncpy(address.sun_path, path, sizeof(address.sun_path) - 1);
 
-        rc = unlink(path);
-        if (rc == -1) err(1, "Could not remove old socket fixture");
-
         rc = bind(socket_fd, (const struct sockaddr*) &address, sizeof(struct sockaddr_un));
         if (rc == -1) err(1, "Could not bind socket to filesystem");
 
@@ -34,16 +31,16 @@ int main() {
             int client_fd = accept(socket_fd, NULL, NULL);
             if (client_fd == -1) err(1, "Could not accept new connection");
             int options = 1;
-            rc = setsockopt(client_fd, SOL_SOCKET, SO_NOSIGPIPE, (void *)&options, sizeof(int));
+            //rc = setsockopt(client_fd, SOL_SOCKET, SO_NOSIGPIPE, (void *)&options, sizeof(int));
 
             while(true) {
-                int64_t buffer;
-                rc = read(client_fd, (char*) &buffer, sizeof(int64_t));
+                int buffer;
+                rc = read(client_fd, (char*) &buffer, sizeof(int));
                 if (rc == -1) break;
 
                 buffer += 1;
 
-                rc = write(client_fd, (char*) &buffer, sizeof(int64_t));
+                rc = write(client_fd, (char*) &buffer, sizeof(int));
                 if (rc == -1) break;
             }
             rc = close(client_fd);

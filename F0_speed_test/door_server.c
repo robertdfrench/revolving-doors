@@ -6,15 +6,18 @@
 #include <strings.h>
 #include <err.h>
 
-void answer(void* cookie, char* args, size_t nargs, door_desc_t* descriptors, uint_t ndescriptors) {
-	char* response = "Well, hello to you too!";
-	door_return(response, strlen(response), NULL, 0);
+void increment(void* cookie, char* args, size_t nargs, door_desc_t* descriptors, uint_t ndescriptors) {
+	int x = *((int *) args);
+
+	x += 1;
+
+	door_return((char *) &x, sizeof(int), NULL, 0);
 }
 
 int main() {
 	char* path = "door_server.door";
 
-	int door = door_create(&answer, NULL, 0);
+	int door = door_create(&increment, NULL, 0);
 	if (door == -1) err(1, "Handle cannot be attached to door");
 
 	int fd = open(path, O_RDWR|O_CREAT|O_EXCL, 0400);
