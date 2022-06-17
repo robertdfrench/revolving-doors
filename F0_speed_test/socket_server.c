@@ -32,6 +32,8 @@ int main() {
             if (client_fd == -1) err(1, "Could not accept new connection");
             int options = 1;
             //rc = setsockopt(client_fd, SOL_SOCKET, SO_NOSIGPIPE, (void *)&options, sizeof(int));
+	    //^^^^ This is what is causing the socket server to exit when the client exits
+	    // Need to figure out the illumos-friendly analogue
 
             while(true) {
                 int buffer;
@@ -43,8 +45,7 @@ int main() {
                 rc = write(client_fd, (char*) &buffer, sizeof(int));
                 if (rc == -1) break;
             }
-            rc = close(client_fd);
-            if (rc == -1) break;
+            close(client_fd);
         }
         close(socket_fd);
 	

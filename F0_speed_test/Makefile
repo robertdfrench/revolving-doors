@@ -2,6 +2,16 @@ include ../etc/lib.mk
 
 test: test_door test_socket ## Compare performance of Doors and Sockets
 
+stop_noise: noise.pid
+	kill -9 `cat noise.pid`
+	rm -f noise.pid
+
+noise.pid:
+	$(MAKE) generate_noise &; echo $$! > $@
+
+generate_noise:
+	@while true; do find / -exec stat {} \; > /dev/null 2>&1; done;
+
 test_door: clean door_client door_server.door ## Run Door Benchmark
 	$(call emphasize, Exchange pleasantries with the door_server)
 	time ./door_client
