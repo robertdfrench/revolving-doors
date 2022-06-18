@@ -6,20 +6,19 @@ without giving up the current CPU timeslice. This means they can be
 faster than sockets in certain situations. It all has to do with the
 cost of switching back from the client to the server and back.
 
+Here's what it looks like with Doors:
+
 ```mermaid
 sequenceDiagram
-    participant Other
     participant Server
     participant Client
     participant User
-
-    Note right of Server: Using Doors
 
     User->>Client: request
     activate User
     activate Client
     Client->>Server: door_call
-    deactivate Client                                      
+    deactivate Client
 
     activate Server                    
     Server->>Client: door_return
@@ -29,12 +28,15 @@ sequenceDiagram
     Client->>User: response
     deactivate Client
     deactivate User
+```
 
-    activate Other
-    Other->>Other: unrelated work
-    deactivate Other
+And this is what it looks like with Sockets:
 
-    Note right of Server: Using Sockets
+```mermaid
+sequenceDiagram
+    participant Server
+    participant Client
+    participant User
 
     User->>Client: request
     activate User
@@ -42,18 +44,10 @@ sequenceDiagram
     Client-->>Server: write
     deactivate Client
 
-    activate Other
-    Other->>Other: unrelated work
-    deactivate Other
-
     activate Server
     Client-->>Server: read
     Server-->>Client: write
     deactivate Server
-
-    activate Other
-    Other->>Other: unrelated work
-    deactivate Other
 
     activate Client
     Server-->>Client: read
