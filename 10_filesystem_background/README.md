@@ -13,7 +13,13 @@ already exist. This is where the `O_CREAT|O_EXCL` flags come in handy: they tell
 That is, we don't want some crufty old path that has already been used. If it
 does, `open` will fail.
 
-![open](open.svg)
+```mermaid
+sequenceDiagram     
+    participant server.door
+    participant server
+
+    server ->> server.door: open() // try to create file
+```
 
 ## Check for Understanding
 1. Why call `open` with `0400` permissions insted of `0600` or `0444`?
