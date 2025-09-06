@@ -1,5 +1,5 @@
 [Next](../v2)
-# illumos door chat
+# illumos door chat (v1)
 This chat system is extremely simple. It does not provide an interactive,
 IRC-like interface. You will need to use tmux or screen to set up multiple
 terminals to run this.
