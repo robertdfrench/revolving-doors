@@ -1,22 +1,14 @@
-all: bin/dchatadm bin/dchatd bin/dchat
+start: bin/dchat
+	./bin/dchat server
 
-activate:
-	PATH=`make _path` `make _shell` || true
+follow: bin/dchat
+	./bin/dchat follow
 
-_shell:
-	@cat /etc/passwd | grep ${USER} | cut -d':' -f7
+post: bin/dchat
+	./bin/dchat post
 
-_path:
-	@echo "$(PWD)/bin:$(PATH)"
-
-bin/dchatadm: chat.c bin/.dir
-	$(CC) chat.c -o $@
-
-bin/dchatd: chat.c bin/.dir
-	$(CC) chat.c -o $@
-
-bin/dchat: chat.c bin/.dir
-	$(CC) chat.c -o $@
+bin/dchat: main.c bin/.dir
+	$(CC) main.c -o $@
 
 bin/.dir:
 	mkdir -p bin

@@ -17,8 +17,6 @@
 
 #define CHAT_ACTION_POST 1
 #define CHAT_ACTION_AWAIT 2
-#define CHAT_ACTION_DOWN 3
-#define CHAT_ACTION_STATS 4
 
 
 static long long int last_message_id = 0;
@@ -37,11 +35,6 @@ typedef struct chat_ingress {
 	uid_t author;
 	char message[255];
 } chat_ingress_t;
-
-
-typedef struct chat_stats {
-	long long int num_messages;
-} chat_stats_t;
 
 
 void action_post(chat_request_t* request) {
@@ -67,23 +60,6 @@ void action_post(chat_request_t* request) {
 	door_return(NULL, 0, NULL, 0);
 }
 
-void action_stats() {
-	ucred_t* client_credentials = NULL;
-	door_ucred(&client_credentials);
-	uid_t caller_id = ucred_getruid(client_credentials);
-	ucred_free(client_credentials);
-
-	printf("STATS: [%d]\n", caller_id);
-
-	if (caller_id == 0) {
-		chat_stats_t stats;
-		stats.num_messages = last_message_id;
-		door_return((char*)&stats, sizeof(chat_stats_t), NULL, 0);
-	} else {
-		door_return(NULL, 0, NULL, 0);
-	}
-}
-
 void action_await() {
 	int current_message_id = last_message_id;
 	printf("AWAIT: [%d]\n", current_message_id);
@@ -97,21 +73,6 @@ void action_await() {
 	strncpy(ingress.message, last_message, 255);
 
 	door_return((char*)&ingress, sizeof(chat_ingress_t), NULL, 0);
-}
-
-void action_down() {
-	ucred_t* client_credentials = NULL;
-	door_ucred(&client_credentials);
-	uid_t caller_id = ucred_getruid(client_credentials);
-	ucred_free(client_credentials);
-
-	printf("DOWN: [%d]\n", caller_id);
-
-	if (caller_id == 0) {
-		exit(0);
-	} else {
-		door_return(NULL, 0, NULL, 0);
-	}
 }
 
 void action_invalid() {
@@ -138,13 +99,11 @@ void server_procedure(
 	switch (request->action) {
 		case CHAT_ACTION_POST: action_post(request); break;
 		case CHAT_ACTION_AWAIT: action_await(); break;
-		case CHAT_ACTION_DOWN: action_down(); break;
-		case CHAT_ACTION_STATS: action_stats(); break;
 		default: action_invalid();
 	}
 }
 
-int server_main(int argc, char** argv) {
+int server_init() {
 	printf("Start door server\n");
 	int rc;
 
@@ -167,7 +126,7 @@ int server_main(int argc, char** argv) {
 	return door_return(NULL, 0, NULL, 0);
 }
 
-int client_await() {
+int client_follow() {
 	int fd = open(DOOR_PATH, 'r');
 
 	chat_request_t request;
@@ -224,79 +183,25 @@ int client_post() {
 	return 0;
 }
 
-int admin_down() {
-	int fd = open(DOOR_PATH, 'r');
-	chat_request_t request;
-	request.action = CHAT_ACTION_DOWN;
-
-	door_arg_t params;
-	params.data_ptr = (char*)&request;
-	params.data_size = sizeof(chat_request_t);
-	params.desc_ptr = NULL;
-	params.desc_num = 0;
-	params.rbuf = NULL;
-	params.rsize = 0;
-
-	door_call(fd, &params);
-	return 0;
-}
-
-int admin_stats() {
-	int fd = open(DOOR_PATH, 'r');
-	chat_request_t request;
-	request.action = CHAT_ACTION_STATS;
-
-	door_arg_t params;
-	params.data_ptr = (char*)&request;
-	params.data_size = sizeof(chat_request_t);
-	params.desc_ptr = NULL;
-	params.desc_num = 0;
-	params.rbuf = NULL;
-	params.rsize = 0;
-
-	door_call(fd, &params);
-	if (params.rbuf == NULL) err(1, "dchatd unavailable");
-
-	chat_stats_t* stats = (chat_stats_t*)params.rbuf;
-	printf("Total Messages: %lld\n", stats->num_messages);
-
-	return 0;
-}
-
-int client_main(int argc, char** argv) {
-	if (argc < 2) {
-		err(1, "Must specify a subcommand");
-	}
-
-	switch (argv[1][0]) {
-		case 'w': client_post(); break;
-		case 'r': client_await(); break;
-		default: err(1, "Unknown subcommand");
-	}
-
-	return 0;
-}
-
-int admin_main(int argc, char** argv) {
-	if (argc < 2) {
-		err(1, "Must specify a subcommand");
-	}
-
-	switch (argv[1][0]) {
-		case 'd': admin_down(); break;
-		case 's': admin_stats(); break;
-		default: err(1, "Unknown subcommand");
-	}
-
-	return 0;
+int args_error() {
+	fprintf(stderr, "Must specify one of the following subcommands: server, follow, post");
+	return 1;
 }
 
 int main(int argc, char** argv) {
-	if (strcmp(argv[0], "dchatd") == 0) {
-		return server_main(argc, argv);
-	} else if (strcmp(argv[0], "dchatadm") == 0) {
-		return admin_main(argc, argv);
+	if (argc < 2) {
+		return args_error();
+	}
+
+	char* subcommand = argv[1];
+
+	if (strcmp(subcommand, "server") == 0) {
+		return server_init();
+	} else if (strcmp(subcommand, "follow") == 0) {
+		return client_follow();
+	} else if (strcmp(subcommand, "post") == 0) {
+		return client_post();
 	} else {
-		return client_main(argc, argv);
+		return args_error();
 	}
 }
