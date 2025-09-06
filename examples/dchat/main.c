@@ -21,7 +21,6 @@
 
 static long long int last_message_id = 0;
 static char last_message[255];
-static uid_t last_message_author;
 
 
 typedef struct chat_request {
@@ -32,18 +31,11 @@ typedef struct chat_request {
 
 
 typedef struct chat_ingress {
-	uid_t author;
 	char message[255];
 } chat_ingress_t;
 
 
 void action_post(chat_request_t* request) {
-	// Store User ID of Client
-	ucred_t* client_credentials = NULL;
-	door_ucred(&client_credentials);
-	last_message_author = ucred_getruid(client_credentials);
-	ucred_free(client_credentials);
-
 	// Store Message
 	strncpy(last_message, request->message, 255);
 	char* line_end = strchr(last_message, '\n');
@@ -53,8 +45,7 @@ void action_post(chat_request_t* request) {
 	// Store next id
 	last_message_id++;
 
-	printf("POST: [%d | %d | %s]\n",
-		last_message_author,
+	printf("POST: [%d | %s]\n",
 		last_message_id,
 		last_message);
 	door_return(NULL, 0, NULL, 0);
@@ -69,7 +60,6 @@ void action_await() {
 	}
 
 	chat_ingress_t ingress;
-	ingress.author = last_message_author;
 	strncpy(ingress.message, last_message, 255);
 
 	door_return((char*)&ingress, sizeof(chat_ingress_t), NULL, 0);
@@ -148,9 +138,7 @@ int client_follow() {
 
 		ingress = (chat_ingress_t*)params.rbuf;
 
-		struct passwd* pw = getpwuid(ingress->author);
-
-		printf("%s: %s\n", pw->pw_name, ingress->message);
+		printf("%s\n", ingress->message);
 	}
 
 	return 0;
