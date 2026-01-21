@@ -7,7 +7,21 @@ illumos Doors are a novel form of inter-process communication. They allow a
 thread in a client process to call a function in a server process, automatically
 spawning a handler thread in the server process if needed.
 
-![overview](overview.svg)
+```mermaid
+sequenceDiagram     
+	participant client
+	participant /tmp/door
+	participant server
+
+	server ->> /tmp/door: door_create
+	client ->> /tmp/door: open
+
+	client ->>+ server: door_call(arguments)
+	note over server: execute in server
+	server ->>- client: door_return(results)
+
+	client ->> /tmp/door: close
+```
 
 This repository includes a set of annotated code examples of increasing
 complexity, each of which discusses a different aspect of the doors API. Though

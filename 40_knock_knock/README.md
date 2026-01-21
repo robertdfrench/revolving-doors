@@ -7,7 +7,39 @@ In this lesson, we introduce a client program defined in [client.c](client.c).
 Its job is to open `server.door` and call the `answer` function inside a running
 `server` process.
 
-![door-call](door-call.svg)
+```mermaid
+sequenceDiagram
+    participant client
+    participant server.door
+    participant server
+    participant void answer()
+
+    server ->> server.door: open()
+    note left of server: try to create file
+
+    server ->> void answer(): door_create()
+    note right of server: turn func into door
+
+    server ->> server.door: fattach(answer)
+    note left of server: connect file to door
+
+    server.door --> void answer(): connected
+
+    note over client: ./client
+    activate client
+    client ->> server.door: open()
+    client ->> void answer(): door_call()
+    deactivate client
+
+    activate void answer()
+    note over void answer(): printf("Someone...")
+    void answer() ->> client: door_return
+    deactivate void answer()
+
+    activate client
+    note over client: exit()
+    deactivate client
+```
 
 Opening a door is not (on the whole) different from opening other filesystem
 resources in UNIX. Perhaps you are more accustomed to using `fopen` to deal with

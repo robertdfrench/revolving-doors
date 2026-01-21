@@ -10,7 +10,23 @@ call referenced below.
 If that succeeds, we can attach this file descriptor to the filesystem using the
 `fattach` call. 
 
-![create-door](create-door.svg)
+```mermaid
+sequenceDiagram     
+	participant server.door
+    participant server
+    participant void answer()
+
+    server ->> server.door: open()
+    note left of server: try to create file
+
+    server ->> void answer(): door_create()
+    note right of server: turn func into door
+
+    server ->> server.door: fattach(answer)
+    note left of server: connect file to door
+
+    server.door --> void answer(): connected
+```
 
 Run `make test` to build and launch this version of the door server in the
 background. Now run `ls -AhlF server.door` and take a close look at the output.

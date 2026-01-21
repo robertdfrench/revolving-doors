@@ -11,7 +11,31 @@ programs, they will exchange pleasantries:
 
 > server: "Well hello yourself!"
 
-![hello-yourself](hello-yourself.svg)
+```mermaid
+sequenceDiagram
+    participant client
+    participant server.door
+    participant server
+    participant void answer()
+
+    server ->> server.door: open()
+
+    server ->> void answer(): door_create()
+
+    server ->> server.door: fattach(answer)
+
+    server.door --> void answer(): connected
+
+    note over client: ./client
+    activate client
+    client ->> server.door: open()
+    client ->> void answer(): door_call("Hello World!")
+    deactivate client
+
+    activate void answer()
+    void answer() ->> client: door_return("Well hello, yourself!")
+    deactivate void answer()
+```
 
 What we provide to the doors library is not this data, but rather the
 addresses and lengths of these two strings. For the client, the structure that
